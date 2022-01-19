@@ -21,7 +21,12 @@
         inputs: 0,
         outputs: 1,
         label: function () {
-            return this.name || "MQTT Bridge";
+            if (this.local && this.cloud) {
+                const localName = RED.nodes.node(this.local).name
+                const cloudName = RED.nodes.node(this.cloud).name
+                return `${localName} ⇨ ${cloudName}`;
+            }
+            return 'MQTT Bridge'
         }
     });
 </script>

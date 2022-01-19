@@ -14,16 +14,11 @@ module.exports = function (RED) {
 
             // 发布
             this.publish = (topic, payload) => {
-                // 本地MQTT
-                if (!clientId) {
-                    return server.client.publish(topic, payload)
-                }
-
                 // 云端MQTT协议
                 const type = Object.prototype.toString.call(payload)
                 switch (type) {
                     case '[object Uint8Array]':
-                        return;
+                        return server.client.publish(topic, payload)
                     case '[object Object]':
                         payload = JSON.stringify(payload)
                         break;
@@ -31,7 +26,12 @@ module.exports = function (RED) {
                         payload = String(payload)
                         break;
                 }
-                server.client.publish(`nr-mqtt-bridge/${clientId}`, JSON.stringify({ topic, payload }))
+                // MQTT云
+                if (clientId) {
+                    server.client.publish(`nr-mqtt-bridge/${clientId}`, JSON.stringify({ topic, payload }))
+                } else {
+                    server.client.publish(topic, payload)
+                }
             }
             // 订阅
             this.subscribe = (topic, callback) => {
