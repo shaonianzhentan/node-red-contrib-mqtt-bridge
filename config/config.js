@@ -5,10 +5,19 @@ module.exports = function (RED) {
         if (server) {
             server.register(this)
             const { clientId } = cfg
+
+            let subscribe_prefix = `nr-mqtt-bridge/${server.broker}/`
+            let publish_prefix = `nr-mqtt-bridge/${clientId}`
+            if (!clientId) {
+                subscribe_prefix = publish_prefix = 'nodered-mqtt-bridge/'
+            }
+
             // 发布
             this.publish = (topic, payload) => {
                 // 本地MQTT
-                if (!clientId) return server.client.publish(topic, payload)
+                if (!clientId) {
+                    return server.client.publish(topic, payload)
+                }
 
                 // 云端MQTT协议
                 const type = Object.prototype.toString.call(payload)
@@ -30,6 +39,10 @@ module.exports = function (RED) {
                     callback(mpayload)
                 })
             }
+            // 订阅前缀
+            this.subscribe_topic = (topic) => subscribe_prefix + topic
+            // 发布前缀
+            this.publish_topic = (topic) => publish_prefix + topic
         }
     })
 }
