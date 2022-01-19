@@ -4,10 +4,7 @@ MQTT连接本地和云端
 [![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://flows.nodered.org/node/node-red-contrib-mqtt-bridge)
 [![NPM version](https://img.shields.io/npm/v/node-red-contrib-mqtt-bridge.svg?style=flat-square)](https://www.npmjs.com/package/node-red-contrib-mqtt-bridge)
 ![license](https://img.shields.io/github/license/shaonianzhentan/node-red-contrib-mqtt-bridge)
-
 ![visit](https://visitor-badge.glitch.me/badge?page_id=shaonianzhentan.node-red-contrib-mqtt-bridge&left_text=visit)
-![forks](https://img.shields.io/github/forks/shaonianzhentan/node-red-contrib-mqtt-bridge)
-![stars](https://img.shields.io/github/stars/shaonianzhentan/node-red-contrib-mqtt-bridge)
 
 `MQTT Bridge` 部署到本地
 
