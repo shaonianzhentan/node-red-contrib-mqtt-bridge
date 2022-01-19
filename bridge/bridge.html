@@ -1,0 +1,27 @@
+<script type="text/html" data-template-name="mqtt-bridge">
+    <div class="form-row">
+        <label for="node-input-local">本地</label>
+        <select id="node-input-local"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-cloud">云端</label>
+        <select id="node-input-cloud"></select>
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-bridge', {
+        category: "MQTT",
+        color: '#d8bfd8',
+        icon: "font-awesome/fa-cloud",
+        paletteLabel: 'MQTT Bridge',
+        defaults: {
+            local: { value: "", type: "mqtt-broker", required: true },
+            cloud: { value: "", type: "mqtt-broker", required: true }
+        },
+        inputs: 0,
+        outputs: 1,
+        label: function () {
+            return this.name || "MQTT Bridge";
+        }
+    });
+</script>

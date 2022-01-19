@@ -1,0 +1,22 @@
+<script type="text/html" data-template-name="mqtt-config">
+    <div class="form-row">
+        <label for="node-config-input-server">MQTT</label>
+        <select id="node-config-input-server"></select>
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-clientId">本地客户端ID</label>
+        <input type="text" id="node-config-input-clientId" />
+    </div>
+</script>
+<script type="text/javascript">
+    RED.nodes.registerType('mqtt-config', {
+        category: 'config',
+        defaults: {
+            server: { value: "", type: "mqtt-broker", required: true },
+            clientId: { value: "" }
+        },
+        label: function () {
+            return RED.nodes.node(this.server).name;
+        }
+    });
+</script>
